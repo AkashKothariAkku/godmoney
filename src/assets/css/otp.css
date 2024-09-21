@@ -1,0 +1,8 @@
+ .otp-inputs {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 67%; /* Adjust width to your liking */
+  }
+
+

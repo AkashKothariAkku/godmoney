@@ -1,0 +1,110 @@
+/* Limit content width to typical mobile size and center it */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  
+  /* Ensure the container stays within the viewport */
+  .home-container {
+    margin: 0 auto;
+    padding-top: 80px; /* To avoid overlap with the fixed header */
+    background-color: white;
+    width: 375px; /* Typical mobile width */
+    min-height: 100vh;
+    border-radius: 10px; /* Optional: gives a nice mobile-like rounded corner */
+  }
+  
+  /* List Section */
+  .list-section {
+    margin-top: 20px;
+  }
+  .list-section h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #007bff;
+    padding-bottom: 10px;
+  }
+  
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .list-info {
+    flex-grow: 1;
+    margin-right: 20px;
+  }
+  
+  .add-amount-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .add-amount-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Popup Modal Styles */
+.modal-content {
+  border-radius: 10px; /* Rounded corners to match mobile look */
+  width: 100%; /* Full width of the viewport */
+  max-width: 375px; /* Constrain width to typical mobile size */
+  margin: 0 auto; /* Center the modal */
+}
+
+.modal-header {
+  border-bottom: none; /* Remove border for a cleaner look */
+  background-color: #f1f1f1; /* Light background color for the header */
+  border-radius: 10px 10px 0 0; /* Rounded corners for top */
+}
+
+.modal-title {
+  font-size: 18px;
+  color: #007bff;
+}
+
+.modal-body {
+  padding: 20px; /* Padding inside the body of the modal */
+}
+
+.modal-footer {
+  border-top: none; /* Remove border for a cleaner look */
+  background-color: #f1f1f1; /* Light background color for the footer */
+  border-radius: 0 0 10px 10px; /* Rounded corners for bottom */
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the end */
+}
+
+.modal-footer .btn {
+  margin-left: 10px; /* Spacing between buttons */
+}
+
+.input-group {
+  width: 100%; /* Full width for the input group */
+}
+
+.input-group button {
+  border-radius: 8px; /* Rounded corners for buttons */
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.input-group button:hover {
+  background-color: #0056b3;
+}
+
+.input-group input {
+  border-radius: 8px; /* Rounded corners for input field */
+  border: 1px solid #ddd; /* Light border for the input field */
+  text-align: center; /* Center text in the input field */
+}

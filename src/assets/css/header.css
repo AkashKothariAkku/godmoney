@@ -1,0 +1,27 @@
+
+  
+  /* Header styling with blue theme, fixed and centered */
+  .header {
+    background-color: #007bff;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    max-width: 430px; /* Limit header width to mobile size */
+    left: 50%;
+    transform: translateX(-50%); /* Center the header horizontally */
+  }
+  
+  /* Center content and restrict wallet, profile icon */
+  .wallet-section {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+  }
+  
+  .profile-section .dropdown-menu {
+    right: 0;
+    left: auto;
+  }

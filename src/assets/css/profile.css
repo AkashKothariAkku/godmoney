@@ -1,0 +1,62 @@
+/* Limit content width to typical mobile size and center it */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  
+  /* Ensure the container stays within the viewport */
+  .home-container {
+    margin: 0 auto;
+    padding-top: 80px; /* To avoid overlap with the fixed header */
+    background-color: white;
+    width: 375px; /* Typical mobile width */
+    min-height: 100vh;
+  }
+  
+  /* Profile Form Styling */
+  .profile-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-form label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .profile-form input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .profile-form button {
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .profile-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Optional styling for cancel button */
+  .profile-form .cancel-btn {
+    background-color: #f44336;
+    margin-top: 10px;
+  }
+  
+  .profile-form .cancel-btn:hover {
+    background-color: #c0392b;
+  }
+  
