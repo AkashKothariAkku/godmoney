@@ -69,7 +69,7 @@ function App() {
           <Route path="/add-blog" element={<AddBlog />} />
           <Route path="/edit-blog/:id" element={<AddBlog />} />
           <Route path="/subscribers" element={<Subscribers />} />
-          <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/edit-profile" element={<EditProfile />} /> 
           </Route>
       </Routes>
     </Router>
