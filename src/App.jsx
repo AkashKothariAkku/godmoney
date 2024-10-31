@@ -57,8 +57,8 @@ function App() {
         <Route path='/winners' element={<ProtectedRoute><NonAdminLayout><WinnersPage/></NonAdminLayout></ProtectedRoute>} />
         <Route path='/matches' element={<ProtectedRoute><NonAdminLayout><MatchesPage/></NonAdminLayout></ProtectedRoute>} />
         <Route path='/add-money' element={<ProtectedRoute><NonAdminLayout><WalletAddMoney/></NonAdminLayout></ProtectedRoute>} />
-        <Route path="admin-login-panel" element={<AdminLogin />} />
-        <Route path="admin" element={<AdminLayout><AdminNavigation /></AdminLayout>}>
+        <Route path="/admin-login-panel" element={<AdminLogin />} />
+        <Route path="/admin/" element={<AdminLayout><AdminNavigation /></AdminLayout>}>
           <Route index element={<Dashboard />} />
           <Route path="users" element={<UserList />} />
           <Route path="user/:id" element={<User />} />
