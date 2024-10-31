@@ -57,19 +57,19 @@ function App() {
         <Route path='/winners' element={<ProtectedRoute><NonAdminLayout><WinnersPage/></NonAdminLayout></ProtectedRoute>} />
         <Route path='/matches' element={<ProtectedRoute><NonAdminLayout><MatchesPage/></NonAdminLayout></ProtectedRoute>} />
         <Route path='/add-money' element={<ProtectedRoute><NonAdminLayout><WalletAddMoney/></NonAdminLayout></ProtectedRoute>} />
-        <Route path="/admin-login-panel" element={<AdminLogin />} />
-        <Route path="/admin" element={<AdminLayout><AdminNavigation /></AdminLayout>}>
+        <Route path="admin-login-panel" element={<AdminLogin />} />
+        <Route path="admin" element={<AdminLayout><AdminNavigation /></AdminLayout>}>
           <Route index element={<Dashboard />} />
-          <Route path="/users" element={<UserList />} />
-          <Route path="/user/:id" element={<User />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/contest" element={<Contest />} />
-          <Route path="/view-contest/:id" element={<ViewContest />} />
-          <Route path="/add-contest" element={<AddContest />} />
-          <Route path="/add-blog" element={<AddBlog />} />
-          <Route path="/edit-blog/:id" element={<AddBlog />} />
-          <Route path="/subscribers" element={<Subscribers />} />
-          <Route path="/edit-profile" element={<EditProfile />} /> 
+          <Route path="users" element={<UserList />} />
+          <Route path="user/:id" element={<User />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="contest" element={<Contest />} />
+          <Route path="view-contest/:id" element={<ViewContest />} />
+          <Route path="add-contest" element={<AddContest />} />
+          <Route path="add-blog" element={<AddBlog />} />
+          <Route path="edit-blog/:id" element={<AddBlog />} />
+          <Route path="subscribers" element={<Subscribers />} />
+          <Route path="edit-profile" element={<EditProfile />} />
           </Route>
       </Routes>
     </Router>
