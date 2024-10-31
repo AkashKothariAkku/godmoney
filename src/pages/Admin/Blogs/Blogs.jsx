@@ -18,6 +18,7 @@ export default function Blogs() {
       .then(function (response) {
         let data = [];
         let count = 0
+        
         response?.data?.data?.map(e => {
           data.push({...e, id: ++count})
         })
