@@ -5,6 +5,10 @@
     margin-bottom: 20px;
     color: #007bff;
   }
+
+  .wallet-container{
+    text-align: center;
+  }
   
   /* Payment Information Section */
   .payment-info {

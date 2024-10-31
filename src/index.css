@@ -25,6 +25,12 @@ html, body {
   min-height: 100vh;
 }
 
+.admin-container {
+  width: 100vw;  /* Typical mobile width */
+  background-color: white; /* The mobile content background */
+  min-height: 100vh;
+}
+
 .wrapper {
   display: flex;
   justify-content: center;

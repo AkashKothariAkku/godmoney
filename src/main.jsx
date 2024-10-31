@@ -5,10 +5,6 @@ import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div className="wrapper">
-      <div className="container-fluid mobile-container">
         <App />
-      </div>
-    </div>
   </StrictMode>,
 )

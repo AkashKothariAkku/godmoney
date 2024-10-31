@@ -5,6 +5,18 @@
     align-items: flex-start;
     min-height: 100vh;
   }
+  .watch-container {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 150px;
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+  }
   
   /* Ensure the container stays within the viewport */
   .home-container {

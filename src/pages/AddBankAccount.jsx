@@ -1,60 +1,91 @@
 import { useState } from 'react';
 import '../assets/css/addbankaccount.css'; // Import the CSS file
 import { Header } from '../components/Header';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddBankAccount = () => {
+  const navigate = useNavigate()
   // State to handle form data
   const [formData, setFormData] = useState({
-    accountHolderName: '',
+    name: '',
     accountNumber: '',
     bankName: '',
     branchName: '',
-    ifscCode: '',
-    notes: ''
+    ifscCode: ''
   });
+  const [fieldError, setFieldError] = useState();
 
   // Handle input change
   const handleChange = (e) => {
+    setFieldError()
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add validation here if needed
-    console.log(formData);
-    alert("Bank Account Added Successfully!");
-  };
+   // Handle form submission
+   const handleSubmit = () => {
+    axios.post(`${import.meta.env.VITE_BASE_URL}/add-bank-account`, formData, {
+      withCredentials: true
+    })
+      .then(function (response) {
+        console.log(response);
+        navigate("/home");
+      })
+      .catch(function (error) {
+        console.log(error);
+        toast(error?.response?.data?.message)
+      });
+};
 
-  // Handle cancel action
-  const handleCancel = () => {
-    // Logic to handle cancel, maybe redirect or clear the form
-    alert("Action Cancelled!");
+  const checkFields = (fields) => {
+    const fieldErr = {};
+    Object.keys(fields).forEach((e) => {
+      if (fields[e] === "" || fields[e] === "<p></p>") {
+        fieldErr[e] = (
+          <p
+            style={{
+              color: "red",
+              fontSize: "15px",
+              margin: "0",
+            }}
+          >
+            This field is required
+          </p>
+        );
+      }
+    });
+    if (Object.keys(fieldErr).length === 0) {
+        handleSubmit()
+    } else {
+      setFieldError(fieldErr);
+    }
   };
 
   return (
     <div className="wrapper">
+      <ToastContainer />
       <div className="home-container">
 
         {/* Header Section */}
         <Header />
 
         {/* Add Bank Account Form */}
-        <form className="bank-account-form" onSubmit={handleSubmit}>
-          <label htmlFor="accountHolderName">Account Holders Name</label>
+        <form className="bank-account-form">
+          <label htmlFor="name">Account Holders Name</label>
           <input
             type="text"
-            id="accountHolderName"
-            name="accountHolderName"
-            value={formData.accountHolderName}
+            id="name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             placeholder="Enter account holder's name"
-            required
           />
-
+          {fieldError?.name}
           <label htmlFor="accountNumber">Account Number</label>
           <input
             type="text"
@@ -63,9 +94,8 @@ const AddBankAccount = () => {
             value={formData.accountNumber}
             onChange={handleChange}
             placeholder="Enter account number"
-            required
           />
-
+          {fieldError?.accountNumber}
           <label htmlFor="bankName">Bank Name</label>
           <input
             type="text"
@@ -74,9 +104,8 @@ const AddBankAccount = () => {
             value={formData.bankName}
             onChange={handleChange}
             placeholder="Enter bank name"
-            required
           />
-
+          {fieldError?.bankName}
           <label htmlFor="branchName">Branch Name</label>
           <input
             type="text"
@@ -85,9 +114,8 @@ const AddBankAccount = () => {
             value={formData.branchName}
             onChange={handleChange}
             placeholder="Enter branch name"
-            required
           />
-
+          {fieldError?.branchName}
           <label htmlFor="ifscCode">IFSC Code</label>
           <input
             type="text"
@@ -96,20 +124,12 @@ const AddBankAccount = () => {
             value={formData.ifscCode}
             onChange={handleChange}
             placeholder="Enter IFSC code"
-            required
           />
-
-          <label htmlFor="notes">Notes (Optional)</label>
-          <textarea
-            id="notes"
-            name="notes"
-            value={formData.notes}
-            onChange={handleChange}
-            placeholder="Add any relevant notes here"
-          />
-
-          <button type="submit">Add Bank Account</button>
-          <button type="button" className="cancel-btn" onClick={handleCancel}>Cancel</button>
+          {fieldError?.ifscCode}
+          <button onClick={(e)=>{
+            e.preventDefault()
+            checkFields(formData)
+          }}>Add Bank Account</button>
         </form>
 
       </div>

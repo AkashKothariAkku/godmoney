@@ -1,34 +1,35 @@
+import { useEffect, useState } from 'react';
 import '../assets/css/winnerspage.css'; // Import the CSS file
 import { Header } from '../components/Header';
-
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const WinnersPage = () => {
-  // Array of winners
-  const winners = [
-    {
-      id: 1,
-      name: 'John Doe',
-      amount: 5000,
-      image: 'https://via.placeholder.com/50',
-      listName: 'Dream League',
-    },
-    {
-      id: 2,
-      name: 'Jane Smith',
-      amount: 3000,
-      image: 'https://via.placeholder.com/50',
-      listName: 'Premier Contest',
-    },
-    {
-      id: 3,
-      name: 'Mike Johnson',
-      amount: 10000,
-      image: 'https://via.placeholder.com/50',
-      listName: 'Super Cup',
-    },
-  ];
+
+  const [contestData, setContestData] = useState([]);
+
+  const getWinnerData = () => {
+    axios.get(`${import.meta.env.VITE_BASE_URL}/winner-list`)
+      .then(function (response) {
+        let data = [];
+        let count = 0
+        response?.data?.data?.map(e => {
+          data.push({...e, id: ++count})
+        })
+        setContestData(data)
+      })
+      .catch(function (error) {
+        console.log(error);
+        toast(error?.response?.data?.message)
+      });
+  }
+  useEffect(() => {
+    getWinnerData()
+  }, [])
 
   return (
     <div className="wrapper">
+      <ToastContainer />
       <div className="home-container">
         
         {/* Header Section */}
@@ -37,14 +38,13 @@ const WinnersPage = () => {
         {/* Winners List Section */}
         <div className="winners-list">
           <h2>Winners</h2>
-          {winners.map((winner) => (
+          {contestData.map((winner) => (
             <div className="winner-item" key={winner.id}>
               <div className="winner-info">
-                <img src={winner.image} alt={winner.name} className="winner-image" />
                 <div className="winner-details">
                   <h3>{winner.name}</h3>
-                  <p>Amount Won: ${winner.amount}</p>
-                  <p>List: {winner.listName}</p>
+                  <p>Amount Won: <b style={{fontSize: "16px"}}>{winner.winnerAmount}₹</b></p>
+                  <p>Winner Name: <b style={{fontSize: "16px"}}>{winner?.users?.name}</b></p>
                 </div>
               </div>
             </div>

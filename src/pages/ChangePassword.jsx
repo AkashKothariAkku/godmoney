@@ -1,24 +1,30 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import '../assets/css/changepassword.css'; // Import the CSS file
 import { Header } from '../components/Header';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ChangePassword = () => {
   // State to handle form data
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    currentPassword: '',
+    oldPassword: '',
     newPassword: '',
     confirmPassword: ''
   });
-
+  const [fieldError, setFieldError] = useState();
   // State to track the visibility of the password fields
   const [showPassword, setShowPassword] = useState({
-    currentPassword: false,
+    oldPassword: false,
     newPassword: false,
     confirmPassword: false
   });
 
   // Handle input change
   const handleChange = (e) => {
+    setFieldError()
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -33,50 +39,96 @@ const ChangePassword = () => {
     });
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.newPassword === formData.confirmPassword) {
-      // Logic to handle form submission
-      console.log(formData);
-      alert("Password Changed Successfully!");
-    } else {
-      alert("New Password and Confirm Password do not match!");
-    }
-  };
+  const handleSubmit = () => {
+    axios.put(`${import.meta.env.VITE_BASE_URL}/password/update`, formData, {
+      withCredentials: true
+    })
+      .then(function (response) {
+        console.log(response);
+        navigate("/home");
+      })
+      .catch(function (error) {
+        console.log(error);
+        toast(error?.response?.data?.message)
+      });
+};
 
-  // Handle cancel action
-  const handleCancel = () => {
-    alert("Password Change Cancelled!");
-  };
-
+  const checkFields = useCallback(
+    (fields) => {
+      const fieldErr = {};
+      Object.keys(fields).forEach((e) => {
+        if (fields[e].trim() === "") {
+          fieldErr[e] = (
+            <p className='text-danger'> This field is required </p>
+          );
+        }
+      });
+      console.log(fieldErr)
+      if (Object.keys(fieldErr).length === 0) {
+        if (fields.oldPassword.length > 7 && fields.newPassword.length > 7) {
+          if (
+            formData.newPassword === formData.confirmPassword
+          ) {
+            handleSubmit()
+          } else {
+            fieldErr.commonErr = (
+              <p className='text-danger'>
+                {" "}
+                Password and Confirm Password is not matched.{" "}
+              </p>
+            );
+          }
+          setFieldError(fieldErr);
+        } else if (fields.oldPassword.length > 7) {
+          fieldErr.newPassword = <p className='text-danger'> Password must be 8 characters  </p>;
+          setFieldError(fieldErr);
+        }else if (fields.newPassword.length > 7) {
+          fieldErr.oldPassword = <p className='text-danger'> Password must be 8 characters  </p>;
+          setFieldError(fieldErr);
+        } else {
+          fieldErr.oldPassword = (
+            <p className='text-danger'> Password must be 8 characters </p>
+          );
+          fieldErr.newPassword = (
+            <p className='text-danger'> Password must be 8 characters </p>
+          );
+          setFieldError(fieldErr);
+        }
+      } else {
+        setFieldError(fieldErr);
+      }
+    },
+    [formData]
+  );
   return (
     <div className="wrapper">
+      <ToastContainer />
       <div className="home-container">
         
         {/* Header Section */}
         <Header />
 
         {/* Change Password Form */}
-        <form className="change-password-form" onSubmit={handleSubmit}>
-          <label htmlFor="currentPassword">Current Password</label>
+        <form className="change-password-form">
+          <label htmlFor="oldPassword">Current Password</label>
           <div className="password-input-wrapper">
             <input 
-              type={showPassword.currentPassword ? 'text' : 'password'} 
-              id="currentPassword" 
-              name="currentPassword" 
-              value={formData.currentPassword} 
+              type={showPassword.oldPassword ? 'text' : 'password'} 
+              id="oldPassword" 
+              name="oldPassword" 
+              value={formData.oldPassword} 
               onChange={handleChange}
               placeholder="Enter current password" 
               required 
             />
             <span 
               className="toggle-password" 
-              onClick={() => togglePasswordVisibility('currentPassword')}
+              onClick={() => togglePasswordVisibility('oldPassword')}
             >
-              {showPassword.currentPassword ? '👁️' : '👁️‍🗨️'}
+              {showPassword.oldPassword ? '👁️' : '👁️‍🗨️'}
             </span>
           </div>
+            {fieldError?.oldPassword}
 
           <label htmlFor="newPassword">New Password</label>
           <div className="password-input-wrapper">
@@ -96,6 +148,7 @@ const ChangePassword = () => {
               {showPassword.newPassword ? '👁️' : '👁️‍🗨️'}
             </span>
           </div>
+            {fieldError?.newPassword}
 
           <label htmlFor="confirmPassword">Confirm New Password</label>
           <div className="password-input-wrapper">
@@ -115,9 +168,12 @@ const ChangePassword = () => {
               {showPassword.confirmPassword ? '👁️' : '👁️‍🗨️'}
             </span>
           </div>
+          {fieldError?.confirmPassword}
+            {fieldError?.commonErr}
 
-          <button type="submit">Save Changes</button>
-          <button type="button" className="cancel-btn" onClick={handleCancel}>Cancel</button>
+          <button onClick={(e)=>{
+            e.preventDefault()
+            checkFields(formData)}}>Save Changes</button>
         </form>
 
       </div>

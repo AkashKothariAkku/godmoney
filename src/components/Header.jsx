@@ -1,20 +1,55 @@
 import { FaUserCircle, FaWallet } from 'react-icons/fa';
 import { Dropdown, Navbar, Container } from 'react-bootstrap';
 import "../assets/css/header.css"
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Header = () => {
+  const navigate = useNavigate()
+  const [walletAmount, setWalletAmount] = useState(0)
+  const getSelfData = () => {
+    axios.get(`${import.meta.env.VITE_BASE_URL}/me`, {
+      withCredentials: true,
+    })
+      .then(function (response) {
+        console.log(response);
+        setWalletAmount(response.data?.data?.walletAmount)
+      })
+      .catch(function (error) {
+        console.log(error);
+        toast(error?.response?.data?.message)
+      });
+  }
+  const logout = () => {
+    axios.get(`${import.meta.env.VITE_BASE_URL}/logout`, {
+      withCredentials: true,
+    })
+    .then(function () {
+      navigate("/");
+    })
+    .catch(function (error) {
+      console.log(error);
+      toast(error?.response?.data?.message)
+    });
+  };
+  useEffect(() => {
+    getSelfData()
+  }, [])
   return (
     <Navbar className="header">
+      <ToastContainer />
     <Container className="d-flex justify-content-between">
      <NavLink to='/home'> <Navbar.Brand className="text-white">
-        MyApp
+        GodMoney
       </Navbar.Brand></NavLink>
       
       {/* Wallet Icon with balance */}
       <div className="wallet-section d-flex align-items-center">
         <NavLink to='/add-money'><FaWallet size={24} color="white" />
-        <span className="text-white ms-2">$500</span></NavLink>
+        <span className="text-white ms-2">{walletAmount}₹</span></NavLink>
       </div>
 
       {/* Profile Dropdown */}
@@ -29,7 +64,9 @@ export const Header = () => {
             <Dropdown.Item><NavLink to='/change-password'>Change Password</NavLink></Dropdown.Item>
             <Dropdown.Item><NavLink to='/matches'>My Matches</NavLink></Dropdown.Item>
             <Dropdown.Item><NavLink to='/winners'>Winners</NavLink></Dropdown.Item>
-            <Dropdown.Item><NavLink to='/add-bank-account'>Add Bank Account</NavLink></Dropdown.Item>
+            <Dropdown.Item><NavLink to='/withdraw-amount'>Withdraw Amount</NavLink></Dropdown.Item>
+            {/* <Dropdown.Item><NavLink to='/add-bank-account'>Add Bank Account</NavLink></Dropdown.Item> */}
+            <Dropdown.Item><NavLink to="#" onClick={logout}>Logout</NavLink></Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
