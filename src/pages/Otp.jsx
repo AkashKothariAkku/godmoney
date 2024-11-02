@@ -51,6 +51,18 @@ function Otp() {
   }
   }
 
+  function resendOtp(){
+    axios.post(`${import.meta.env.VITE_BASE_URL}/resend-otp/${location.state.userId}`)
+    .then(function (response) {
+      console.log(response);
+      toast("OTP send to your mail")
+    })
+    .catch(function (error) {
+      console.log(error);
+      toast(error?.response?.data?.message)
+    });
+  }
+
   return (
     <>
     <ToastContainer />
@@ -83,7 +95,7 @@ function Otp() {
         }
       }}>Verify OTP</button>
 
-      <p className="text-center mt-3">Didn’t receive the OTP? <a href="#">Resend OTP</a></p>
+      <p className="text-center mt-3">Didn’t receive the OTP? <p style={{textDecoration: "underline", color: "blue"}} onClick={resendOtp}>Resend OTP</p></p>
 
     </>
   );
