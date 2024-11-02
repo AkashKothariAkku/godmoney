@@ -31,7 +31,6 @@ import ViewContest from './pages/Admin/Blogs copy/ViewContest';
 import Cookies from 'js-cookie';
 // ProtectedRoute for authenticated users
 function ProtectedRoute({ children }) {
-  console.log(Cookies.get('token'))
   console.log(isAuthenticated())
   return isAuthenticated() ? children : <Navigate to="/" />;
 }

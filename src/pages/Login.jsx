@@ -56,6 +56,7 @@ function Login() {
           type: "register"
         });
       }else{
+        localStorage.setItem("token", response?.data?.token)
         navigate("/home")
       }
       })

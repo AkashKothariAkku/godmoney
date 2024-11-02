@@ -13,6 +13,9 @@ export const Header = () => {
   const getSelfData = () => {
     axios.get(`${import.meta.env.VITE_BASE_URL}/me`, {
       withCredentials: true,
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
     })
       .then(function (response) {
         console.log(response);
@@ -26,6 +29,9 @@ export const Header = () => {
   const logout = () => {
     axios.get(`${import.meta.env.VITE_BASE_URL}/logout`, {
       withCredentials: true,
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
     })
     .then(function () {
       navigate("/");
