@@ -34,6 +34,7 @@ export const Header = () => {
       }
     })
     .then(function () {
+      localStorage.clear()
       navigate("/");
     })
     .catch(function (error) {

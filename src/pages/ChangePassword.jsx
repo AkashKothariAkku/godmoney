@@ -41,7 +41,10 @@ const ChangePassword = () => {
 
   const handleSubmit = () => {
     axios.put(`${import.meta.env.VITE_BASE_URL}/password/update`, formData, {
-      withCredentials: true
+      withCredentials: true,
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
     })
       .then(function (response) {
         console.log(response);

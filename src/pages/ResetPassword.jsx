@@ -46,6 +46,7 @@ const ResetPassword = () => {
     axios.post(`${import.meta.env.VITE_BASE_URL}/reset-password/${location?.state?.userId}`, formData)
     .then(function (response) {
       console.log(response);
+      localStorage.setItem("token", response?.data?.token)
       navigate("/home", formData);
     })
     .catch(function (error) {

@@ -30,7 +30,10 @@ const AddBankAccount = () => {
    // Handle form submission
    const handleSubmit = () => {
     axios.post(`${import.meta.env.VITE_BASE_URL}/add-bank-account`, formData, {
-      withCredentials: true
+      withCredentials: true,
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
     })
       .then(function (response) {
         console.log(response);

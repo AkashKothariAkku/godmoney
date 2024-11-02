@@ -15,7 +15,11 @@ export default function Contest() {
   const navigate = useNavigate();
 
   const getContestData = () => {
-    axios.get(`${import.meta.env.VITE_BASE_URL}/get-all-contest`)
+    axios.get(`${import.meta.env.VITE_BASE_URL}/get-all-contest`,{
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    })
       .then(function (response) {
         let data = [];
         let count = 0

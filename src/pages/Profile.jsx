@@ -27,7 +27,10 @@ const Profile = () => {
   // Handle form submission
   const handleSubmit = () => {
       axios.post(`${import.meta.env.VITE_BASE_URL}/edit-user`, formData, {
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
       })
         .then(function (response) {
           console.log(response);
@@ -42,6 +45,9 @@ const Profile = () => {
   const getSelfData = () => {
     axios.get(`${import.meta.env.VITE_BASE_URL}/me`, {
       withCredentials: true,
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
     })
       .then(function (response) {
         console.log(response);

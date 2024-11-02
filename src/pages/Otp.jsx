@@ -29,6 +29,7 @@ function Otp() {
     axios.post(`${import.meta.env.VITE_BASE_URL}/verify/${location.state.userId}`, {otp})
     .then(function (response) {
       console.log(response);
+      localStorage.setItem("token", response?.data?.token)
       navigate("/home");
     })
     .catch(function (error) {

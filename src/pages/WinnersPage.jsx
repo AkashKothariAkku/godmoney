@@ -9,7 +9,11 @@ const WinnersPage = () => {
   const [contestData, setContestData] = useState([]);
 
   const getWinnerData = () => {
-    axios.get(`${import.meta.env.VITE_BASE_URL}/winner-list`)
+    axios.get(`${import.meta.env.VITE_BASE_URL}/winner-list`, {
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    })
       .then(function (response) {
         let data = [];
         let count = 0

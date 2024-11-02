@@ -80,6 +80,9 @@ const MatchesPage = () => {
   const getContestList = () => {
     axios.get(`${import.meta.env.VITE_BASE_URL}/get-user-contest`, {
       withCredentials: true,
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
     })
     .then(function (response) {
       console.log(response.data.data);
@@ -106,7 +109,10 @@ const MatchesPage = () => {
       return
     }
     axios.post(`${import.meta.env.VITE_BASE_URL}/add-contest-amount`, {contestId: selectedItemId?._id, amount: amountToAdd, sentence: sentence, time: seconds}, {
-      withCredentials: true
+      withCredentials: true,
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
     })
     .then(function (response) {
       console.log(response);

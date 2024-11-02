@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import st from "../../../assets/stylesheet/AdminStyle.module.scss";
 import { Card } from "react-bootstrap";
-import UserDataGrid from "./DataGrid";
 import table from "../../../assets/stylesheet/datatable.module.scss";
-import { AiOutlineFileAdd } from "react-icons/ai";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
 import ViewContestGrid from "./ViewContestGrid";
@@ -12,12 +10,14 @@ import ViewContestGrid from "./ViewContestGrid";
 export default function ViewContest() {
   const [loader, setLoader] = useState(true);
   const [contestData, setContestData] = useState([]);
-
-  const navigate = useNavigate();
   const params = useParams()
   console.log(params)
   const getContestViewData = () => {
-    axios.get(`${import.meta.env.VITE_BASE_URL}/view-contest/${params?.id}`)
+    axios.get(`${import.meta.env.VITE_BASE_URL}/view-contest/${params?.id}`,{
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    })
       .then(function (response) {
         let data = [];
         let count = 0

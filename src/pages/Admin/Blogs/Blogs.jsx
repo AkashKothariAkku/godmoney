@@ -14,7 +14,11 @@ export default function Blogs() {
     setLoader(false);
   }, []);
   const getContestData = () => {
-    axios.get(`${import.meta.env.VITE_BASE_URL}/request-amount-list`)
+    axios.get(`${import.meta.env.VITE_BASE_URL}/request-amount-list`,{
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    })
       .then(function (response) {
         let data = [];
         let count = 0

@@ -66,7 +66,11 @@ const AddBlog = () => {
     });
   }, []);
   const handleSubmit = (formData) => {
-    axios.post(`${import.meta.env.VITE_BASE_URL}/add-contest`, formData)
+    axios.post(`${import.meta.env.VITE_BASE_URL}/add-contest`, formData, {
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    })
     .then(function (response) {
       console.log(response);
       navigate("/admin/contest", formData);

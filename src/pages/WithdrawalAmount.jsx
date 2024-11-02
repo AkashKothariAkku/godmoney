@@ -21,7 +21,10 @@ const WithdrawalAmount = () => {
 
     const getBankAccount = () => {
         axios.get(`${import.meta.env.VITE_BASE_URL}/get-bank-account`, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+              Authorization: localStorage.getItem("token")
+            }
         })
             .then(function (response) {
                 console.log(response);
@@ -58,7 +61,10 @@ const WithdrawalAmount = () => {
             })
         }
         axios.post(`${import.meta.env.VITE_BASE_URL}/withdraw-request`, {amount, bankAccountId: selectedAccount}, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+              Authorization: localStorage.getItem("token")
+            }
         })
             .then(function (response) {
                 console.log(response);
