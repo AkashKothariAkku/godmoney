@@ -59,6 +59,7 @@ const WithdrawalAmount = () => {
             setFieldError(prev => {
                 return {...prev, account: <p className='text-danger'>Please add or select one account </p>}
             })
+            return
         }
         axios.post(`${import.meta.env.VITE_BASE_URL}/withdraw-request`, {amount, bankAccountId: selectedAccount}, {
             withCredentials: true,
