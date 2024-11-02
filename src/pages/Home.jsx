@@ -69,7 +69,10 @@ function HomePage() {
       return
     }
     axios.post(`${import.meta.env.VITE_BASE_URL}/add-contest-amount`, {contestId: selectedItemId?._id, amount: amountToAdd, sentence: sentence, time: seconds}, {
-      withCredentials: true
+      withCredentials: true,
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
     })
     .then(function (response) {
       console.log(response);
@@ -85,6 +88,9 @@ function HomePage() {
   const getContestList = () => {
     axios.get(`${import.meta.env.VITE_BASE_URL}/get-contest`, {
       withCredentials: true,
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
     })
     .then(function (response) {
       console.log(response);
