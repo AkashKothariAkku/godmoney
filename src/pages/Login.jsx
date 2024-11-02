@@ -35,8 +35,7 @@ function Login() {
       .then(function (response) {
         console.log(response);
         navigate("/otp", {
-          state: { userId: response?.data?.data?.userId },
-          type: "register"
+          state: { userId: response?.data?.data?.userId,  type: "register" }
         });
       })
       .catch(function (error) {
@@ -52,8 +51,7 @@ function Login() {
         console.log(response);
         if(response.status === 403){
         navigate("/otp", {
-          state: { userId: response?.data?.data?.userId },
-          type: "register"
+          state: { userId: response?.data?.data?.userId,  type: "register" },
         });
       }else{
         localStorage.setItem("token", response?.data?.token)
