@@ -66,7 +66,6 @@ const ChangePassword = () => {
           );
         }
       });
-      console.log(fieldErr)
       if (Object.keys(fieldErr).length === 0) {
         if (fields.oldPassword.length > 7 && fields.newPassword.length > 7) {
           if (

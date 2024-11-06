@@ -34,6 +34,7 @@ function ForgotPassword() {
     <>
     <ToastContainer />
         <div className="text-center mb-5 mt-5">
+    <img src='images/logo.png' className='mb-3' width="60px" alt='logo'/>
           <h2>Forgot Password</h2>
           <p>Please enter your email address. We will send you an OTP to reset your password.</p>
         </div>

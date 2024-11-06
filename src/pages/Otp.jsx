@@ -67,6 +67,7 @@ function Otp() {
     <>
     <ToastContainer />
       <div className="text-center mb-5 mt-5">
+      <img src='images/logo.png' className='mb-3' width="60px" alt='logo'/>
         <h2>Enter OTP</h2>
         <p>Please enter the 4-digit OTP sent to your email.</p>
       </div>

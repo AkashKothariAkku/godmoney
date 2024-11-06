@@ -201,7 +201,7 @@ function Login() {
         {/* Login Tab Pane */}
         <div className={`tab-pane fade ${activeTab === 'tab1' ? 'show active' : ''}`} id="pills-login" role="tabpanel">
           <div className="text-center mb-5 mt-5">
-
+             <img src='images/logo.png' width="80px" alt='logo'/>
           </div>
 
           <div className="mb-4">
@@ -251,6 +251,7 @@ function Login() {
         {/* Register Tab Pane */}
         <div className={`tab-pane fade ${activeTab === 'tab2' ? 'show active' : ''}`} id="pills-register" role="tabpanel">
           <div className="text-center mb-5 mt-5">
+          <img src='images/logo.png' width="80px" alt='logo'/>
           </div>
 
           <div className="mb-4">

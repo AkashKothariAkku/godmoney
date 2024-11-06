@@ -48,6 +48,7 @@ export const Header = () => {
   return (
     <Navbar className="header">
       <ToastContainer />
+      <img src='images/logo.png' width="40px" alt='logo'/>
     <Container className="d-flex justify-content-between">
      <NavLink to='/home'> <Navbar.Brand className="text-white">
         GodMoney

@@ -164,7 +164,10 @@ function HomePage() {
                 <h4>Write the below sentence</h4>
                 <WatchIcon value={value}/>
                 </div>
-              {selectedItemId?.sentence}
+              <span  onCopy={(e) => {
+          e.preventDefault();
+          return false;
+        }}>{selectedItemId?.sentence}</span>
              
               </div>
               <FormControl

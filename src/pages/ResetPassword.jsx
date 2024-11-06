@@ -96,7 +96,9 @@ const ResetPassword = () => {
     <div className="wrapper">
       <ToastContainer />
       <div className="home-container">
-        
+        <div className='text-center'>
+      <img src='images/logo.png' className='mb-3' width="60px" alt='logo'/>
+      </div>
         {/* Header Section */}
 
         {/* Change Password Form */}
