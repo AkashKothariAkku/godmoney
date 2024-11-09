@@ -239,7 +239,7 @@ function Login() {
               {/* <input className="form-check-input" type="checkbox" id="rememberMe" />
               <label className="form-check-label" htmlFor="rememberMe">Remember me</label> */}
             </div>
-            <NavLink to="forgot-password">Forgot password?</NavLink>
+            <NavLink to="/forgot-password">Forgot password?</NavLink>
           </div>
 
           <button className="btn btn-primary w-100 mb-4" onClick={() => {

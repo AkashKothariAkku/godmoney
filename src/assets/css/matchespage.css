@@ -17,7 +17,7 @@
     border-radius: 50px; /* Rounded edges for tab buttons */
     font-size: 16px;
     font-weight: 600;
-    color: #007bff;
+    color: #03b529;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     position: relative;
@@ -26,7 +26,7 @@
   
   /* Active Tab Styling with Background and Shadow Effect */
   .tabs button.active-tab {
-    background-color: #007bff; /* Blue background for active tab */
+    background-color: #03b529; /* Blue background for active tab */
     color: white;
     box-shadow: 0px 4px 6px rgba(0, 123, 255, 0.4); /* Soft shadow for active tab */
     z-index: 2; /* Make sure the active tab stays above other tabs */
@@ -84,7 +84,7 @@
   
   /* Add Amount Button for Live Matches */
   .add-amount-btn {
-    background-color: #007bff;
+    background-color: #03b529;
     color: white;
     border: none;
     padding: 10px;

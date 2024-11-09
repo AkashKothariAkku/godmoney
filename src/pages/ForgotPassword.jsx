@@ -58,7 +58,7 @@ function ForgotPassword() {
         </form>
 
         <p className="text-center mt-3">
-          Remembered your password? <NavLink to="/">Login</NavLink>
+          Remembered your password? <NavLink to="/login">Login</NavLink>
         </p>
         </>
   );

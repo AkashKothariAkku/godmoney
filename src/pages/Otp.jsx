@@ -14,7 +14,7 @@ function Otp() {
     width: '60px',
     height: '60px',
     fontSize: '1.5rem',
-    border: '1px solid #007bff',
+    border: '1px solid #03b529',
     borderRadius: '5px',
     textAlign: 'center',
     marginRight: '10px',

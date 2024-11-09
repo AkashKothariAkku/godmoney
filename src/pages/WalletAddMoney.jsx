@@ -105,7 +105,7 @@ const WalletAddMoney = () => {
         </Button>
       ))}
     </ButtonGroup>
-        <button style={{backgroundColor: "#007bff", marginBottom: "20px", marginTop:"30px", color: "#ffffff"}} onClick={()=>{
+        <button style={{backgroundColor: "#03b529", marginBottom: "20px", marginTop:"30px", color: "#ffffff"}} onClick={()=>{
           if(!amount || amount < 200){
              setFieldError({amount: <p className='text-danger'> A minimum amount of 200 is required to be added to the wallet.</p>})
           }else{
