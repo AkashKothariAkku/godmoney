@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ProgressBar, Button, Modal, Form, InputGroup, FormControl } from 'react-bootstrap';
+import { Button, Modal, Form, InputGroup, FormControl } from 'react-bootstrap';
 import "../assets/css/homepage.css";
 import { Header } from '../components/Header';
 import axios from 'axios';
@@ -118,9 +118,9 @@ function HomePage() {
           <div className="list-item" key={item.id}>
             <div className="list-info">
               <p>Winner Amount: {item.winnerAmount}₹</p>
-              <ProgressBar 
+              {/* <ProgressBar 
               now={Math.round((item?.totalAmount / (item.winnerAmount + item?.winnerAmount/4)) * 100)} 
-              label={`${Math.round((item?.totalAmount / (item.winnerAmount + item?.winnerAmount/4)) * 100)}% `} variant='success' />
+              label={`${Math.round((item?.totalAmount / (item.winnerAmount + item?.winnerAmount/4)) * 100)}% `} variant='success' /> */}
             </div>  
             <Button className="add-amount-btn" onClick={() => handleShowPopup(item)}>Add Amount</Button>
           </div>
