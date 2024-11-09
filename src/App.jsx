@@ -29,6 +29,7 @@ import WithdrawalAmount from './pages/WithdrawalAmount';
 import { isAuthenticated, getUserRole } from '../utils/auth';
 import ViewContest from './pages/Admin/Blogs copy/ViewContest';
 import Cookies from 'js-cookie';
+import Home2 from './pages/Home2';
 // ProtectedRoute for authenticated users
 function ProtectedRoute({ children }) {
   console.log(isAuthenticated())
@@ -44,7 +45,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<NonAdminLayout> <Login /> </NonAdminLayout>} />
+        <Route path="/login" element={<NonAdminLayout> <Login /> </NonAdminLayout>} />
+        <Route path="/" element={<NonAdminLayout> <Home2 /> </NonAdminLayout>} />
         <Route path="/otp" element={<NonAdminLayout><Otp /></NonAdminLayout>} />
         <Route path="/forgot-password" element={<NonAdminLayout><ForgotPassword /></NonAdminLayout>} />
         <Route path='/home' element={<ProtectedRoute><NonAdminLayout><HomePage/></NonAdminLayout></ProtectedRoute>} />

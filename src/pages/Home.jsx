@@ -46,6 +46,7 @@ function HomePage() {
     }
     setSeconds(0)
     setSentenceError("")
+    setAmountError("")
     setSentence("")
     setShowPopup(false);
     setAmountToAdd(1);
