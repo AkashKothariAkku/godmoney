@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import '../assets/css/matchespage.css'; // Import CSS file
 import { Header } from '../components/Header';
-import { ProgressBar, Button, Modal, Form, InputGroup, FormControl } from 'react-bootstrap';
+import { Button, Modal, Form, InputGroup, FormControl } from 'react-bootstrap';
 import axios from 'axios';
 import WatchIcon from './WatchIcon';
 import { ToastContainer, toast } from 'react-toastify';
@@ -172,9 +172,9 @@ const MatchesPage = () => {
               <div className="match-item live-match" key={item.id}>
               <div className="match-info">
                 <p>Winner Amount: {item?.contestDetails?.winnerAmount}₹</p>
-                <ProgressBar 
+                {/* <ProgressBar 
                 now={Math.round((item?.contestDetails?.totalAmount / (item?.contestDetails?.winnerAmount + item?.contestDetails?.winnerAmount/4)) * 100)} 
-                label={`${Math.round((item?.contestDetails?.totalAmount / (item?.contestDetails?.winnerAmount + item?.contestDetails?.winnerAmount/4)) * 100)}% `} variant='success' />
+                label={`${Math.round((item?.contestDetails?.totalAmount / (item?.contestDetails?.winnerAmount + item?.contestDetails?.winnerAmount/4)) * 100)}% `} variant='success' /> */}
               </div>  
               <Button className="add-amount-btn" onClick={() => handleShowPopup(item?.contestDetails)}>Add Amount</Button>
             </div>

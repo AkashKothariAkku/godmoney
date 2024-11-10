@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ProgressBar } from 'react-bootstrap';
+// import { ProgressBar } from 'react-bootstrap';
 import "../assets/css/homepage.css";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -56,9 +56,9 @@ function Home2() {
           <div className="list-item" key={item.id}>
             <div className="list-info">
               <p>Winner Amount: {item.winnerAmount}₹</p>
-              <ProgressBar 
+              {/* <ProgressBar 
               now={Math.round((item?.totalAmount / (item.winnerAmount + item?.winnerAmount/4)) * 100)} 
-              label={`${Math.round((item?.totalAmount / (item.winnerAmount + item?.winnerAmount/4)) * 100)}% `} variant='success' />
+              label={`${Math.round((item?.totalAmount / (item.winnerAmount + item?.winnerAmount/4)) * 100)}% `} variant='success' /> */}
             </div>  
             <NavLink to="/login" className="add-amount-btn">Add Amount</NavLink>
           </div>
