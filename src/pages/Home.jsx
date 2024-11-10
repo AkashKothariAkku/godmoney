@@ -133,7 +133,7 @@ function HomePage() {
           <Modal.Title>Add Amount</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form autoComplete="off">
             <Form.Group controlId="formBasicAmount">
               <Form.Label>Amount to Add</Form.Label>
               <InputGroup>

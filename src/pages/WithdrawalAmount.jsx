@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const WithdrawalAmount = () => {
     const navigate = useNavigate()
-    const [amount, setAmount] = useState(200);
+    const [amount, setAmount] = useState(2000);
     const [bankAccount, setBankAccount] = useState([]);
     const [fieldError, setFieldError] = useState();
     const [selectedAmount, setSelectedAmount] = useState(null);
@@ -49,9 +49,9 @@ const WithdrawalAmount = () => {
 
     // Handle form submission
     const handleSubmit = () => {
-        if(!amount || amount < 200){
+        if(!amount || amount < 2000){
             setFieldError(prev => {
-                return {...prev, amount: <p className='text-danger'>Amount must be greater then or equal to 200 </p>}
+                return {...prev, amount: <p className='text-danger'>Amount must be greater then or equal to 2000 </p>}
             })
             return 
         }
@@ -90,7 +90,7 @@ const WithdrawalAmount = () => {
                     <input
                         type="number"
                         onChange={handleChangeAmount}
-                        min={200}
+                        min={2000}
                         value={amount}
                         required
                     />
