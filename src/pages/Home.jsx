@@ -149,7 +149,7 @@ function HomePage() {
                   min={1}
                   max={selectedItemId?.maxAmount}
                   onChange={(e) => {
-                  setAmountError("")
+                    setAmountError("")
                     setAmountToAdd(Number(e.target.value))}}
                 />
                 <Button variant="outline-secondary" onClick={() => {
@@ -174,6 +174,8 @@ function HomePage() {
               <FormControl
                   type="text"
                   value={sentence}
+                  autoComplete="off"
+                  onPaste={(e) => e.preventDefault()}
                   onChange={(e) => {
                     runTime()
                     setSentenceError("")
