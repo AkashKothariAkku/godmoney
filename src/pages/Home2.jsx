@@ -93,16 +93,9 @@ function Home2() {
       {/* Video Thumbnail */}
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         <div style={{ position: "relative", width: "100%", maxWidth: "400px", borderRadius: "8px", overflow: "hidden" }}>
-        <video
-  src="images/playVideo.mp4" // Replace with the actual video URL
-  poster="images/thumbnail.jpg" // Replace with the actual thumbnail image URL
-  alt="How to Play"
-  style={{ width: "100%", borderRadius: "8px" }}
-  controls
-  playsInline
-  muted
-></video>
-
+<video controls autoPlay loop muted playsInline  style={{ width: "100%", borderRadius: "8px" }}>
+    <source src="images/playVideo.mp4" type="video/mp4" />
+</video>
 
           {/* Play Button Overlay */}
         </div>
