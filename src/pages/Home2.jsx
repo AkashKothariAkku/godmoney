@@ -76,6 +76,9 @@ function Home2() {
         </div>
       ))}
     </div>
+    <div className="list-section">
+        <img src='images/money.jpeg' className="mt-0" width={"370px"}/>
+      </div>
     <div style={{ textAlign: "center", padding: "20px" }}>
       {/* Title */}
       <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", margin: "0 0 10px", color: "#0D6EFD" }}>
@@ -96,7 +99,10 @@ function Home2() {
   alt="How to Play"
   style={{ width: "100%", borderRadius: "8px" }}
   controls
+  playsInline
+  muted
 ></video>
+
 
           {/* Play Button Overlay */}
         </div>
