@@ -78,11 +78,11 @@ const WalletAddMoney = () => {
     const svgString = serializer.serializeToString(svg);
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
-
+    
     const img = new Image();
     img.onload = () => {
-      canvas.width = img.width;
-      canvas.height = img.height;
+      canvas.width = (img.width + 50);
+      canvas.height = (img.height + 50);
       ctx.drawImage(img, 0, 0);
       const pngFile = canvas.toDataURL("image/png");
       
