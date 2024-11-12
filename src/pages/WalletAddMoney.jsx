@@ -76,26 +76,15 @@ const WalletAddMoney = () => {
   const qrRef = useRef();
   const downloadQRCode = async () => {
     const svg = qrRef.current.querySelector("svg");
-    const svgString = new XMLSerializer().serializeToString(svg);
-
-    // Create a canvas element
-    const canvas = document.createElement("canvas");
-    canvas.width = 200; // Set canvas width (same as QRCode size)
-    canvas.height = 200; // Set canvas height
-
-    // Use canvg to render SVG on canvas
-    const ctx = canvas.getContext("2d");
-    const v = await Canvg.from(ctx, svgString);
-    await v.render();
-
-    // Convert canvas to PNG data URL
-    const pngFile = canvas.toDataURL("image/png");
-
-    // Trigger download
-    const downloadLink = document.createElement("a");
-    downloadLink.href = pngFile;
-    downloadLink.download = "qr-code.png";
-    downloadLink.click();
+    const svgXML = new XMLSerializer().serializeToString(svg);
+    const dataUrl = "data:image/svg," + encodeURIComponent(svgXML);
+  
+    const anchor = document.createElement("a");
+    anchor.href = dataUrl;
+    anchor.download = `qr-code.svg`;
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
   };
 
   return (
@@ -145,7 +134,7 @@ const WalletAddMoney = () => {
             <div ref={qrRef}>
             <QRCode value={upiUrl} size={200} />
             </div>
-            <button className='mt-3 text-white' onClick={downloadQRCode}>Download QR Code</button>
+            {/* <button className='mt-3 text-white' onClick={downloadQRCode}>Download QR Code</button> */}
           </div>}
         </div>
 
