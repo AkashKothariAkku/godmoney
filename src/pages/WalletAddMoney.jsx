@@ -7,6 +7,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Canvg } from 'canvg';
+
 const WalletAddMoney = () => {
   const navigate = useNavigate()
   const [utrNumber, setUtrNumber] = useState(null);
@@ -72,27 +74,28 @@ const WalletAddMoney = () => {
   };
   const amounts = [500, 1000, 2500, 5000];
   const qrRef = useRef();
-  const downloadQRCode = () => {
+  const downloadQRCode = async () => {
     const svg = qrRef.current.querySelector("svg");
-    const serializer = new XMLSerializer();
-    const svgString = serializer.serializeToString(svg);
+    const svgString = new XMLSerializer().serializeToString(svg);
+
+    // Create a canvas element
     const canvas = document.createElement("canvas");
+    canvas.width = 200; // Set canvas width (same as QRCode size)
+    canvas.height = 200; // Set canvas height
+
+    // Use canvg to render SVG on canvas
     const ctx = canvas.getContext("2d");
-    
-    const img = new Image();
-    img.onload = () => {
-      canvas.width = (img.width + 50);
-      canvas.height = (img.height + 50);
-      ctx.drawImage(img, 0, 0);
-      const pngFile = canvas.toDataURL("image/png");
-      
-      // Create a link to download the QR code
-      const downloadLink = document.createElement("a");
-      downloadLink.href = pngFile;
-      downloadLink.download = "qr-code.png";
-      downloadLink.click();
-    };
-    img.src = "data:image/svg+xml;base64," + btoa(svgString);
+    const v = await Canvg.from(ctx, svgString);
+    await v.render();
+
+    // Convert canvas to PNG data URL
+    const pngFile = canvas.toDataURL("image/png");
+
+    // Trigger download
+    const downloadLink = document.createElement("a");
+    downloadLink.href = pngFile;
+    downloadLink.download = "qr-code.png";
+    downloadLink.click();
   };
 
   return (
